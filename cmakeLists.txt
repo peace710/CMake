@@ -1,3 +1,0 @@
-cmake_minimum_required(VERSION 3.17) #设置CMake最小版本
-project (hello) #设置工程名
-add_executable(hello main.cpp) #生成可执行文件
