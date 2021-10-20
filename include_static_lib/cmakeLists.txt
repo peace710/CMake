@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 3.17)
+project(hello_library)
+
+#将源文件Hello.cpp生成静态库hello_library
+add_library(hello_library STATIC src/Hello.cpp)
+
+#target_include_directories为一个目标/库/可执行文件的头文件路径
+target_include_directories(hello_library PUBLIC ${PROJECT_SOURCE_DIR}/include)
+
+#指定哪个源文件生成可执行文件
+add_executable(hello_binary src/main.cpp)
+
+#链接可执行文件和静态库
+target_link_libraries(hello_binary PRIVATE hello_library)
