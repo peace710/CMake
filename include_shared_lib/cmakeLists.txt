@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.17)
+project(hello_shared_library)
+
+#根据Hello.cpp生成动态库
+add_library(hello_shared_library SHARED src/Hello.cpp)
+
+#给动态库hello_shared_library起个别名shared_so
+add_library(shared_so ALIAS hello_shared_library)
+
+#为这个库添加头文件路径
+target_include_directories(hello_shared_library PUBLIC ${PROJECT_SOURCE_DIR}/include)
+
+#根据main.cpp生成可执行文件
+add_executable(hello_binary src/main.cpp)
+
+#链接库和可执行文件，使用这个库的别名
+target_link_libraries(hello_binary PRIVATE shared_so)
+
